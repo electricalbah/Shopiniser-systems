@@ -43,13 +43,8 @@ import com.salesmanager.core.utils.CloneUtils;
 @Entity
 @Table (name="ORDERS", schema = SchemaConstant.SALESMANAGER_SCHEMA)
 public class Order extends SalesManagerEntity<Long, Order> {
+    private static final long serialVersionUID = -8353240755301575808L;
 	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Column (name ="ORDER_ID" , unique=true , nullable=false )
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT",

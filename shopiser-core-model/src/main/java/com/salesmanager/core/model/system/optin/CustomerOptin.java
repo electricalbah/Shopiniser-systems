@@ -16,12 +16,10 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.Type;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
+import javax.persistence.Lob;
 
 
 /**
@@ -34,13 +32,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @Table(name = "CUSTMER_OPTIN", schema= SchemaConstant.SALESMANAGER_SCHEMA,uniqueConstraints=
 @UniqueConstraint(columnNames = {"EMAIL", "OPTIN_ID"}))
 public class CustomerOptin extends SalesManagerEntity<Long, CustomerOptin> implements Serializable {
-
-	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -8425780759159493523L;
 
 	@Id
 	@Column(name = "CUSTOMER_OPTIN_ID")
@@ -67,7 +59,7 @@ public class CustomerOptin extends SalesManagerEntity<Long, CustomerOptin> imple
 	private String email;
 	
 	@Column(name="VALUE")
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Lob 
 	private String value;
 
 	@Override

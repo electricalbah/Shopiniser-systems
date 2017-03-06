@@ -18,7 +18,7 @@ import com.salesmanager.core.model.common.Description;
 	}
 )
 public class GeoZoneDescription extends Description {
-	private static final long serialVersionUID = 7759498146450786218L;
+    private static final long serialVersionUID = -7466289614809459798L;
 	
 	@ManyToOne(targetEntity = GeoZone.class)
 	@JoinColumn(name = "GEOZONE_ID")

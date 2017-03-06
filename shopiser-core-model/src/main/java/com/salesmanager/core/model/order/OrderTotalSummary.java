@@ -10,11 +10,8 @@ import java.util.List;
  *
  */
 public class OrderTotalSummary implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4145717054213390891L;
+
 	private BigDecimal subTotal;//one time price for items
 	private BigDecimal total;//final price
 	private BigDecimal taxTotal;//total of taxes

@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class OrderTotalItem implements Serializable {
+    private static final long serialVersionUID = 7135040010519897656L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private BigDecimal itemPrice;
 	private String itemCode;
 	public void setItemPrice(BigDecimal itemPrice) {

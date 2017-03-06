@@ -16,14 +16,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.Type;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
+import javax.persistence.Lob;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
@@ -31,12 +29,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 
 
 public class IntegrationModule extends SalesManagerEntity<Long, IntegrationModule> implements Serializable, Auditable {
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -357523134800965997L;
+    private static final long serialVersionUID = -1847987726826467704L;
 
 	@Id
 	@Column(name = "MODULE_CONF_ID")
@@ -56,11 +49,11 @@ public class IntegrationModule extends SalesManagerEntity<Long, IntegrationModul
 	private String regions;
 	
 	@Column(name="CONFIGURATION")
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Lob 
 	private String configuration;
 	
 	@Column(name="DETAILS")
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Lob 
 	private String configDetails;
 	
 	@Column(name="TYPE")
@@ -74,17 +67,17 @@ public class IntegrationModule extends SalesManagerEntity<Long, IntegrationModul
 	private boolean customModule = false;
 	
 	@Transient
-	private Set<String> regionsSet = new HashSet<String>();
+	private Set<String> regionsSet = new HashSet<>();
 	
 	/**
 	 * Contains a map of module config by environment (DEV,PROD)
 	 */
 	@Transient
-	private Map<String,ModuleConfig> moduleConfigs = new HashMap<String,ModuleConfig>();
+	private Map<String,ModuleConfig> moduleConfigs = new HashMap<>();
 	
 	
 	@Transient
-	private Map<String,String> details = new HashMap<String,String>();
+	private Map<String,String> details = new HashMap<>();
 
 	
 	public Map<String, String> getDetails() {

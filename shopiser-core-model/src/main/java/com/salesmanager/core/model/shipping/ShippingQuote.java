@@ -11,11 +11,8 @@ import com.salesmanager.core.model.common.Delivery;
 import com.salesmanager.core.model.system.IntegrationModule;
 
 public class ShippingQuote implements Serializable {
+    private static final long serialVersionUID = 2229823493000773522L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	public final static String NO_SHIPPING_TO_SELECTED_COUNTRY = "NO_SHIPPING_TO_SELECTED_COUNTRY";
 	public final static String NO_SHIPPING_MODULE_CONFIGURED= "NO_SHIPPING_MODULE_CONFIGURED";
 	public final static String NO_POSTAL_CODE= "NO_POSTAL_CODE";
@@ -40,7 +37,7 @@ public class ShippingQuote implements Serializable {
 	 */
 	private Delivery deliveryAddress;
 	
-	private List<String> warnings = new ArrayList<String>();
+	private List<String> warnings = new ArrayList<>();
 	
 	private ShippingOption selectedShippingOption = null;
 	
@@ -49,7 +46,7 @@ public class ShippingQuote implements Serializable {
 	private String quoteError = null;
 	
 	/** additinal shipping information **/
-	private Map<String,Object> quoteInformations = new HashMap<String,Object>();
+	private Map<String,Object> quoteInformations = new HashMap<>();
 	
 	
 	

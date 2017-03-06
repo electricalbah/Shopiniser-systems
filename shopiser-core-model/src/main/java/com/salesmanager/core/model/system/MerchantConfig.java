@@ -9,7 +9,7 @@ import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 
 public class MerchantConfig implements Serializable, JSONAware {
-	
+    private static final long serialVersionUID = 6240092616626890526L;
 
 	/**
 	 * TODO
@@ -17,7 +17,6 @@ public class MerchantConfig implements Serializable, JSONAware {
 	 * on the fly from the client application and read from a key value map
 	 */
 	
-	private static final long serialVersionUID = 1L;
 	private boolean displayCustomerSection =false;
 	private boolean displayContactUs =false;
 	private boolean displayStoreAddress = false;
@@ -29,8 +28,8 @@ public class MerchantConfig implements Serializable, JSONAware {
 	private boolean debugMode = false;
 	
 	/** Store default search json config **/
-	private Map<String,Boolean> useDefaultSearchConfig= new HashMap<String,Boolean>();//language code | true or false
-	private Map<String,String> defaultSearchConfigPath= new HashMap<String,String>();//language code | file path
+	private Map<String,Boolean> useDefaultSearchConfig= new HashMap<>();//language code | true or false
+	private Map<String,String> defaultSearchConfigPath= new HashMap<>();//language code | file path
 
 	@SuppressWarnings("unchecked")
 	@Override

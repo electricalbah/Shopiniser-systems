@@ -20,7 +20,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @EntityListeners(value = AuditListener.class)
 @Table(name = "PRODUCT_TYPE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ProductType extends SalesManagerEntity<Long, ProductType> implements Auditable {
-	private static final long serialVersionUID = 65541494628227593L;
+    private static final long serialVersionUID = -1014259153170118204L;
 	
 	public final static String GENERAL_TYPE = "GENERAL";
 	

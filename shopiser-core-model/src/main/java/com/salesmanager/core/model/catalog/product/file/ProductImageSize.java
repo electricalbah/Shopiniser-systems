@@ -4,7 +4,5 @@ public enum ProductImageSize {
 	
 	LARGE,
 	SMALL
-	
-
 
 }

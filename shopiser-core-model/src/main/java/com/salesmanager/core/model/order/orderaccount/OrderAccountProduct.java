@@ -23,7 +23,7 @@ import com.salesmanager.core.utils.CloneUtils;
 @Entity
 @Table (name="ORDER_ACCOUNT_PRODUCT", schema=SchemaConstant.SALESMANAGER_SCHEMA )
 public class OrderAccountProduct implements Serializable {
-	private static final long serialVersionUID = -7437197293537758668L;
+    private static final long serialVersionUID = -1426072989055025811L;
 
 	@Id
 	@Column (name="ORDER_ACCOUNT_PRODUCT_ID")

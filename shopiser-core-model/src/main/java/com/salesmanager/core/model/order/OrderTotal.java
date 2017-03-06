@@ -29,7 +29,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @Entity
 @Table (name="ORDER_TOTAL" , schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class OrderTotal extends SalesManagerEntity<Long, OrderTotal> {
-	private static final long serialVersionUID = -5885315557404081674L;
+    private static final long serialVersionUID = -2562814332956150539L;
 	
 	@Id
 	@Column(name = "ORDER_ACCOUNT_ID", unique=true, nullable=false)

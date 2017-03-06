@@ -33,13 +33,7 @@ import com.salesmanager.core.model.merchant.MerchantStore;
 @Table(name = "OPTIN", schema= SchemaConstant.SALESMANAGER_SCHEMA,uniqueConstraints=
 @UniqueConstraint(columnNames = {"MERCHANT_ID", "CODE"}))
 public class Optin extends SalesManagerEntity<Long, Optin> implements Serializable {
-
-	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -6956158759859812867L;
 
 	@Id
 	@Column(name = "OPTIN_ID")

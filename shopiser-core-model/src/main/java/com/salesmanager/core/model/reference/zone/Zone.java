@@ -23,7 +23,7 @@ import com.salesmanager.core.model.reference.country.Country;
 @Entity
 @Table(name = "ZONE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class Zone extends SalesManagerEntity<Long, Zone>{
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1924116021284262051L;
 	
 	@Id
 	@Column(name="ZONE_ID")
@@ -33,7 +33,7 @@ public class Zone extends SalesManagerEntity<Long, Zone>{
 	private Long id;
 	
 	@OneToMany(mappedBy = "zone", cascade = CascadeType.ALL)
-	private List<ZoneDescription> descriptions = new ArrayList<ZoneDescription>();
+	private List<ZoneDescription> descriptions = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name="COUNTRY_ID", nullable = false)

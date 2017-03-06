@@ -26,7 +26,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 	}
 )
 public class CustomerAttribute extends SalesManagerEntity<Long, CustomerAttribute> {
-	private static final long serialVersionUID = -6537491946539803265L;
+    private static final long serialVersionUID = 6088136859733099901L;
 	
 	@Id
 	@Column(name = "CUSTOMER_ATTRIBUTE_ID", unique=true, nullable=false)

@@ -16,17 +16,15 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Type;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.order.Order;
 import com.salesmanager.core.utils.CloneUtils;
+import javax.persistence.Lob;
 
 @Entity
 @Table (name="ORDER_STATUS_HISTORY" , schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class OrderStatusHistory implements Serializable {
-	private static final long serialVersionUID = 3438730310126102187L;
+    private static final long serialVersionUID = -4176532692422601821L;
 	
 	@Id
 	@Column ( name="ORDER_STATUS_HISTORY_ID")
@@ -50,7 +48,7 @@ public class OrderStatusHistory implements Serializable {
 	private java.lang.Integer customerNotified;
 	
 	@Column(name = "COMMENTS")
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Lob 
 	private String comments;
 	
 	public OrderStatusHistory() {

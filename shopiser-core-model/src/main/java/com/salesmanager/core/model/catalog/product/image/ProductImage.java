@@ -25,7 +25,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @Entity
 @Table(name = "PRODUCT_IMAGE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ProductImage extends SalesManagerEntity<Long, ProductImage> {
-	private static final long serialVersionUID = 247514890386076337L;
+    private static final long serialVersionUID = -8432933394841768814L;
 	
 	@Id
 	@Column(name = "PRODUCT_IMAGE_ID")
@@ -34,7 +34,7 @@ public class ProductImage extends SalesManagerEntity<Long, ProductImage> {
 	private Long id;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productImage", cascade = CascadeType.ALL)
-	private List<ProductImageDescription> descriptions = new ArrayList<ProductImageDescription>();
+	private List<ProductImageDescription> descriptions = new ArrayList<>();
 
 	
 	@Column(name = "PRODUCT_IMAGE")

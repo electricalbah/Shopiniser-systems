@@ -7,10 +7,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.Type;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.Description;
+import javax.persistence.Lob;
 
 @Entity
 @Table(name="PRODUCT_OPTION_DESC", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints={
@@ -21,14 +21,14 @@ import com.salesmanager.core.model.common.Description;
 	}
 )
 public class ProductOptionDescription extends Description {
-	private static final long serialVersionUID = -3158504904707188465L;
-	
+    private static final long serialVersionUID = 5734947149814733835L;
+
 	@ManyToOne(targetEntity = ProductOption.class)
 	@JoinColumn(name = "PRODUCT_OPTION_ID", nullable = false)
 	private ProductOption productOption;
 	
 	@Column(name="PRODUCT_OPTION_COMMENT")
-	@Type(type = "org.hibernate.type.StringClobType")
+	@Lob 
 	private String productOptionComment;
 	
 	public ProductOptionDescription() {

@@ -33,8 +33,8 @@ import com.salesmanager.core.model.common.Description;
 		}
 	)
 public class TaxRateDescription extends Description {
-	private static final long serialVersionUID = -4752794805878361822L;
-
+    private static final long serialVersionUID = 5546484022187914258L;
+    
 	@ManyToOne(targetEntity = TaxRate.class)
 	@JoinColumn(name = "TAX_RATE_ID")
 	private TaxRate taxRate;

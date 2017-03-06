@@ -21,21 +21,22 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name="PRODUCT_OPTION_VALUE", schema=SchemaConstant.SALESMANAGER_SCHEMA, indexes = { @Index(name="PRD_OPTION_VAL_CODE_IDX", columnList = "PRODUCT_OPTION_VAL_CODE")}, uniqueConstraints=
 	@UniqueConstraint(columnNames = {"MERCHANT_ID", "PRODUCT_OPTION_VAL_CODE"}))
 public class ProductOptionValue extends SalesManagerEntity<Long, ProductOptionValue> {
-	private static final long serialVersionUID = 3736085877929910891L;
-
+    private static final long serialVersionUID = 8858032544283878772L;
+	
 	@Id
 	@Column(name="PRODUCT_OPTION_VALUE_ID")
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "PRODUCT_OPT_VAL_SEQ_NEXT_VAL")
@@ -51,13 +52,14 @@ public class ProductOptionValue extends SalesManagerEntity<Long, ProductOptionVa
 	@Column(name="PRODUCT_OPT_FOR_DISP")
 	private boolean productOptionDisplayOnly=false;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Pattern(regexp="^[a-zA-Z0-9_]*$")
 	@Column(name="PRODUCT_OPTION_VAL_CODE")
 	private String code;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productOptionValue")
-	private Set<ProductOptionValueDescription> descriptions = new HashSet<ProductOptionValueDescription>();
+	private Set<ProductOptionValueDescription> descriptions = new HashSet<>();
 	
 	@Transient
 	private MultipartFile image = null;
@@ -71,7 +73,7 @@ public class ProductOptionValue extends SalesManagerEntity<Long, ProductOptionVa
 	}
 
 	@Transient
-	private List<ProductOptionValueDescription> descriptionsList = new ArrayList<ProductOptionValueDescription>();
+	private List<ProductOptionValueDescription> descriptionsList = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="MERCHANT_ID", nullable=false)
@@ -131,8 +133,8 @@ public class ProductOptionValue extends SalesManagerEntity<Long, ProductOptionVa
 	}
 	
 	public List<ProductOptionValueDescription> getDescriptionsSettoList() {
-		if(descriptionsList==null || descriptionsList.size()==0) {
-			descriptionsList = new ArrayList<ProductOptionValueDescription>(this.getDescriptions());
+		if(descriptionsList==null || descriptionsList.isEmpty()) {
+			descriptionsList = new ArrayList<>(this.getDescriptions());
 		} 
 		return descriptionsList;
 	}

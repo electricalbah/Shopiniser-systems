@@ -25,10 +25,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.catalog.category.Category;
 import com.salesmanager.core.model.catalog.product.attribute.ProductAttribute;
@@ -44,6 +40,8 @@ import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
 import com.salesmanager.core.model.tax.taxclass.TaxClass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -51,7 +49,7 @@ import com.salesmanager.core.model.tax.taxclass.TaxClass;
 @Table(name = "PRODUCT", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints=
 @UniqueConstraint(columnNames = {"MERCHANT_ID", "SKU"}))
 public class Product extends SalesManagerEntity<Long, Product> implements Auditable {
-	private static final long serialVersionUID = -6228066416290007047L;
+    private static final long serialVersionUID = -7268368244504148771L;
 
 	@Id
 	@Column(name = "PRODUCT_ID", unique=true, nullable=false)
@@ -63,19 +61,19 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 	private AuditSection auditSection = new AuditSection();
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product")
-	private Set<ProductDescription> descriptions = new HashSet<ProductDescription>();
+	private Set<ProductDescription> descriptions = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="product")
-	private Set<ProductAvailability> availabilities = new HashSet<ProductAvailability>();
+	private Set<ProductAvailability> availabilities = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product")
-	private Set<ProductAttribute> attributes = new HashSet<ProductAttribute>();
+	private Set<ProductAttribute> attributes = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "product")//cascade is set to remove because product save requires logic to create physical image first and then save the image id in the database, cannot be done in cascade
-	private Set<ProductImage> images = new HashSet<ProductImage>();
+	private Set<ProductImage> images = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product")
-	private Set<ProductRelationship> relationships = new HashSet<ProductRelationship>();
+	private Set<ProductRelationship> relationships = new HashSet<>();
 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -89,14 +87,17 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 			inverseJoinColumns = { @JoinColumn(name = "CATEGORY_ID", 
 					nullable = false, updatable = false) }
 	)
-	@Cascade({
-		org.hibernate.annotations.CascadeType.DETACH,
-		org.hibernate.annotations.CascadeType.LOCK,
-		org.hibernate.annotations.CascadeType.REFRESH,
-		org.hibernate.annotations.CascadeType.REPLICATE
-		
-	})
-	private Set<Category> categories = new HashSet<Category>();
+        
+        //todo
+//	@Cascade({
+//		org.hibernate.annotations.CascadeType.DETACH,
+//		org.hibernate.annotations.CascadeType.LOCK,
+//		org.hibernate.annotations.CascadeType.REFRESH,
+//		org.hibernate.annotations.CascadeType.REPLICATE
+//		
+//	})
+        @OneToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
+	private Set<Category> categories = new HashSet<>();
 	
 	@Column(name="DATE_AVAILABLE")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -156,7 +157,8 @@ public class Product extends SalesManagerEntity<Long, Product> implements Audita
 	@Column(name = "SORT_ORDER")
 	private Integer sortOrder = new Integer(0);
 
-	@NotEmpty
+	@NotNull
+        @Size(min=1) 
 	@Pattern(regexp="^[a-zA-Z0-9_]*$")
 	@Column(name = "SKU")
 	private String sku;

@@ -18,7 +18,7 @@ import com.salesmanager.core.model.common.Description;
 	}
 )
 public class CustomerOptionValueDescription extends Description {
-	private static final long serialVersionUID = 7402155175956813576L;
+    private static final long serialVersionUID = 7914615458924089120L;
 	
 	@ManyToOne(targetEntity = CustomerOptionValue.class)
 	@JoinColumn(name = "CUSTOMER_OPT_VAL_ID")

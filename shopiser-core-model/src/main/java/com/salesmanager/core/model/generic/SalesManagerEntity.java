@@ -16,8 +16,6 @@ public abstract class SalesManagerEntity<K extends Serializable & Comparable<K>,
 		implements Serializable, Comparable<E> {
     private static final long serialVersionUID = -2055740315753020771L;
 
-
-	
 	public static final Collator DEFAULT_STRING_COLLATOR = Collator.getInstance(Locale.FRENCH);
 	
 	static {

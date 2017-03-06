@@ -4,11 +4,9 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 
-public class InputContentFile extends StaticContentFile implements Serializable 
-{
+public class InputContentFile extends StaticContentFile implements Serializable {
+    private static final long serialVersionUID = -755160042224281912L;
 
-    private static final long serialVersionUID = 1L;
-   
     private InputStream file;
    
     

@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Size;
 //import javax.validation.Valid;
 
 //import org.hibernate.validator.constraints.NotEmpty;
@@ -27,6 +28,7 @@ import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @EntityListeners(value = com.salesmanager.core.model.common.audit.AuditListener.class)
@@ -81,6 +83,8 @@ public class Category extends SalesManagerEntity<Long, Category> implements Audi
 	private String lineage;
 	
 	//@NotEmpty  //todo
+        @NotNull 
+        @Size(min=1)
 	@Column(name="CODE", length=100, nullable=false)
 	private String code;
 

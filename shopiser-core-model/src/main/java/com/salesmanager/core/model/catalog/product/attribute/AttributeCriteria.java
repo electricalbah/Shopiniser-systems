@@ -3,11 +3,8 @@ package com.salesmanager.core.model.catalog.product.attribute;
 import java.io.Serializable;
 
 public class AttributeCriteria implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 985924390280935166L;
+
 	private String attributeCode;
 	private String attributeValue;
 	public void setAttributeCode(String attributeCode) {

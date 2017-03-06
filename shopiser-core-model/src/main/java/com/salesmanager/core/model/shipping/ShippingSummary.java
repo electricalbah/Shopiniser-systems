@@ -11,11 +11,8 @@ import com.salesmanager.core.model.common.Delivery;
  *
  */
 public class ShippingSummary implements Serializable {
+    private static final long serialVersionUID = 6492371741022521760L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private BigDecimal shipping;
 	private BigDecimal handling;
 	private String shippingModule;

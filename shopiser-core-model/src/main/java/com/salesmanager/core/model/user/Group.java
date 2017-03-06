@@ -16,24 +16,21 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
 @EntityListeners(value = AuditListener.class)
 @Table(name = "SM_GROUP", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class Group extends SalesManagerEntity<Integer, Group> implements Auditable {
+    private static final long serialVersionUID = 9006162747095508706L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3786127652573709701L;
 	@Id
 	@Column(name = "GROUP_ID", unique=true, nullable=false)
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "GROUP_SEQ_NEXT_VAL")
@@ -48,7 +45,8 @@ public class Group extends SalesManagerEntity<Integer, Group> implements Auditab
 	@Enumerated(value = EnumType.STRING)
 	private GroupType groupType;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="GROUP_NAME", unique=true)
 	private String groupName;
 	
@@ -57,7 +55,7 @@ public class Group extends SalesManagerEntity<Integer, Group> implements Auditab
 	}
 	
 	@ManyToMany(mappedBy = "groups")
-	private Set<Permission> permissions = new HashSet<Permission>();	
+	private Set<Permission> permissions = new HashSet<>();	
 	
 	public Set<Permission> getPermissions() {
 		return permissions;

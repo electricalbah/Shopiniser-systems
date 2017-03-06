@@ -5,135 +5,131 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.model.reference.country.Country;
 import com.salesmanager.core.model.reference.zone.Zone;
+import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Embeddable
-public class Billing {
-	
-	@NotEmpty
-	@Column (name ="BILLING_LAST_NAME", length=64, nullable=false)
-	private String lastName;
+public class Billing implements Serializable {
 
-	@NotEmpty
-	@Column (name ="BILLING_FIRST_NAME", length=64, nullable=false)
-	private String firstName;
-	
+    private static final long serialVersionUID = 3486775846584306970L;
 
+    @NotNull
+    @Size(min = 1)
+    @Column(name = "BILLING_LAST_NAME", length = 64, nullable = false)
+    private String lastName;
 
-	@Column (name ="BILLING_COMPANY", length=100)
-	private String company;
-	
-	@Column (name ="BILLING_STREET_ADDRESS", length=256)
-	private String address;
-	
-	
-	@Column (name ="BILLING_CITY", length=100)
-	private String city;
-	
-	@Column (name ="BILLING_POSTCODE", length=20)
-	private String postalCode;
-	
-	@Column(name="BILLING_TELEPHONE", length=32)
-	private String telephone;
-	
-	@Column (name ="BILLING_STATE", length=100)
-	private String state;
+    @NotNull
+    @Size(min = 1)
+    @Column(name = "BILLING_FIRST_NAME", length = 64, nullable = false)
+    private String firstName;
 
+    @Column(name = "BILLING_COMPANY", length = 100)
+    private String company;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Country.class)
-	@JoinColumn(name="BILLING_COUNTRY_ID", nullable=false)
-	private Country country;
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Zone.class)
-	@JoinColumn(name="BILLING_ZONE_ID", nullable=true)
-	private Zone zone;
+    @Column(name = "BILLING_STREET_ADDRESS", length = 256)
+    private String address;
 
+    @Column(name = "BILLING_CITY", length = 100)
+    private String city;
 
+    @Column(name = "BILLING_POSTCODE", length = 20)
+    private String postalCode;
 
-	public String getCompany() {
-		return company;
-	}
+    @Column(name = "BILLING_TELEPHONE", length = 32)
+    private String telephone;
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    @Column(name = "BILLING_STATE", length = 100)
+    private String state;
 
-	public String getAddress() {
-		return address;
-	}
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Country.class)
+    @JoinColumn(name = "BILLING_COUNTRY_ID", nullable = false)
+    private Country country;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Zone.class)
+    @JoinColumn(name = "BILLING_ZONE_ID", nullable = true)
+    private Zone zone;
 
-	public String getCity() {
-		return city;
-	}
+    public String getCompany() {
+        return company;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public String getPostalCode() {
-		return postalCode;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-	
-	public Country getCountry() {
-		return country;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setCountry(Country country) {
-		this.country = country;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public Zone getZone() {
-		return zone;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setZone(Zone zone) {
-		this.zone = zone;
-	}
-	
-	public String getState() {
-		return state;
-	}
+    public String getPostalCode() {
+        return postalCode;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    public Country getCountry() {
+        return country;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
-	
-	
-	public String getLastName() {
-		return lastName;
-	}
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
+    public Zone getZone() {
+        return zone;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
+    public void setZone(Zone zone) {
+        this.zone = zone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
 }

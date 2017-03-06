@@ -18,22 +18,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
 @Table(name = "MANUFACTURER", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints=
 @UniqueConstraint(columnNames = {"MERCHANT_ID", "CODE"}) )
 public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> implements Auditable {
-	private static final long serialVersionUID = 80693964563570099L;
+    private static final long serialVersionUID = 5399255398965449023L;
 	
 	@Id
 	@Column(name = "MANUFACTURER_ID", unique=true, nullable=false)
@@ -45,7 +44,7 @@ public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> impleme
 	private AuditSection auditSection = new AuditSection();
 	
 	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-	private Set<ManufacturerDescription> descriptions = new HashSet<ManufacturerDescription>();
+	private Set<ManufacturerDescription> descriptions = new HashSet<>();
 	
 	@Column(name = "MANUFACTURER_IMAGE")
 	private String image;
@@ -57,7 +56,8 @@ public class Manufacturer extends SalesManagerEntity<Long, Manufacturer> impleme
 	@JoinColumn(name="MERCHANT_ID", nullable=false)
 	private MerchantStore merchantStore;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="CODE", length=100, nullable=false)
 	private String code;
 

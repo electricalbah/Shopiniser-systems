@@ -26,7 +26,7 @@ import com.salesmanager.core.model.reference.zone.Zone;
 @Table(name = "COUNTRY", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 @Cacheable
 public class Country extends SalesManagerEntity<Integer, Country> {
-	private static final long serialVersionUID = -7388011537255588035L;
+    private static final long serialVersionUID = 550985393320948573L;
 
 	@Id
 	@Column(name="COUNTRY_ID")
@@ -36,10 +36,10 @@ public class Country extends SalesManagerEntity<Integer, Country> {
 	private Integer id;
 	
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-	private List<CountryDescription> descriptions = new ArrayList<CountryDescription>();
+	private List<CountryDescription> descriptions = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "country")
-	private List<Zone> zones = new ArrayList<Zone>();
+	private List<Zone> zones = new ArrayList<>();
 	
 	@ManyToOne(targetEntity = GeoZone.class)
 	@JoinColumn(name = "GEOZONE_ID")

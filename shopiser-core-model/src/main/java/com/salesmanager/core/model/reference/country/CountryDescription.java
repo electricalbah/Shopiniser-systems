@@ -19,7 +19,7 @@ import com.salesmanager.core.model.reference.language.Language;
 	}
 )
 public class CountryDescription extends Description {
-	private static final long serialVersionUID = 9048940117896071174L;
+    private static final long serialVersionUID = -2462012609603317783L;
 	
 	@ManyToOne(targetEntity = Country.class)
 	@JoinColumn(name = "COUNTRY_ID", nullable = false)

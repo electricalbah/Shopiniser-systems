@@ -10,9 +10,9 @@ import java.io.Serializable;
  * @author Umesh Awasthi
  * @since 1.2
  */
-public class OutputContentFile extends StaticContentFile implements Serializable
-{
-    private static final long serialVersionUID = 1L;
+public class OutputContentFile extends StaticContentFile implements Serializable {
+    private static final long serialVersionUID = 8589371069798977892L;
+
     private ByteArrayOutputStream file;
     public ByteArrayOutputStream getFile()
     {

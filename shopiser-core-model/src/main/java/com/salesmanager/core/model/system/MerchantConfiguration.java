@@ -17,108 +17,102 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.Type;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import javax.persistence.Lob;
 
 /**
  * Merchant configuration information
+ *
  * @author Carl Samson
  *
  */
 @Entity
 @EntityListeners(value = AuditListener.class)
-@Table(name = "MERCHANT_CONFIGURATION", schema= SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints=
-	@UniqueConstraint(columnNames = {"MERCHANT_ID", "CONFIG_KEY"}))
+@Table(name = "MERCHANT_CONFIGURATION", schema = SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints
+        = @UniqueConstraint(columnNames = {"MERCHANT_ID", "CONFIG_KEY"}))
 public class MerchantConfiguration extends SalesManagerEntity<Long, MerchantConfiguration> implements Serializable, Auditable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4246917986731953459L;
+    private static final long serialVersionUID = -3607983814994363557L;
 
-	@Id
-	@Column(name = "MERCHANT_CONFIG_ID")
-	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "MERCH_CONF_SEQ_NEXT_VAL")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
-	private Long id;
+    @Id
+    @Column(name = "MERCHANT_CONFIG_ID")
+    @TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "MERCH_CONF_SEQ_NEXT_VAL")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
+    private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="MERCHANT_ID", nullable=true)
-	private MerchantStore merchantStore;
-	
-	@Embedded
-	private AuditSection auditSection = new AuditSection();
-	
-	@Column(name="CONFIG_KEY")
-	private String key;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MERCHANT_ID", nullable = true)
+    private MerchantStore merchantStore;
 
-	
-	@Column(name="VALUE")
-	@Type(type = "org.hibernate.type.StringClobType")
-	private String value;
-	
-	@Column(name="TYPE")
-	@Enumerated(value = EnumType.STRING)
-	private MerchantConfigurationType merchantConfigurationType = MerchantConfigurationType.INTEGRATION;
+    @Embedded
+    private AuditSection auditSection = new AuditSection();
 
-	public void setKey(String key) {
-		this.key = key;
-	}
+    @Column(name = "CONFIG_KEY")
+    private String key;
 
-	public String getKey() {
-		return key;
-	}
+    @Column(name = "VALUE")
+    @Lob
+    private String value;
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    @Column(name = "TYPE")
+    @Enumerated(value = EnumType.STRING)
+    private MerchantConfigurationType merchantConfigurationType = MerchantConfigurationType.INTEGRATION;
 
-	public String getValue() {
-		return value;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-	public AuditSection getAuditSection() {
-		return auditSection;
-	}
+    public String getKey() {
+        return key;
+    }
 
-	public void setAuditSection(AuditSection auditSection) {
-		this.auditSection = auditSection;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	@Override
-	public Long getId() {
-		return id;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Override
+    public AuditSection getAuditSection() {
+        return auditSection;
+    }
 
+    @Override
+    public void setAuditSection(AuditSection auditSection) {
+        this.auditSection = auditSection;
+    }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
 
-	public MerchantStore getMerchantStore() {
-		return merchantStore;
-	}
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setMerchantStore(MerchantStore merchantStore) {
-		this.merchantStore = merchantStore;
-	}
+    public MerchantStore getMerchantStore() {
+        return merchantStore;
+    }
 
-	public void setMerchantConfigurationType(MerchantConfigurationType merchantConfigurationType) {
-		this.merchantConfigurationType = merchantConfigurationType;
-	}
+    public void setMerchantStore(MerchantStore merchantStore) {
+        this.merchantStore = merchantStore;
+    }
 
-	public MerchantConfigurationType getMerchantConfigurationType() {
-		return merchantConfigurationType;
-	}
+    public void setMerchantConfigurationType(MerchantConfigurationType merchantConfigurationType) {
+        this.merchantConfigurationType = merchantConfigurationType;
+    }
 
+    public MerchantConfigurationType getMerchantConfigurationType() {
+        return merchantConfigurationType;
+    }
 
 }

@@ -35,9 +35,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @EntityListeners(value = AuditListener.class)
 @Table(name = "SHOPPING_CART_ITEM", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ShoppingCartItem extends SalesManagerEntity<Long, ShoppingCartItem> implements Auditable, Serializable {
-
-
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -5317961479466442499L;
 
 	@Id
 	@Column(name = "SHP_CART_ITEM_ID", unique=true, nullable=false)
@@ -64,7 +62,7 @@ public class ShoppingCartItem extends SalesManagerEntity<Long, ShoppingCartItem>
 
 	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true, mappedBy = "shoppingCartItem")
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "shoppingCartItem")
-	private Set<ShoppingCartAttributeItem> attributes = new HashSet<ShoppingCartAttributeItem>();
+	private Set<ShoppingCartAttributeItem> attributes = new HashSet<>();
 	
 	@Transient
 	private BigDecimal itemPrice;//item final price including all rebates

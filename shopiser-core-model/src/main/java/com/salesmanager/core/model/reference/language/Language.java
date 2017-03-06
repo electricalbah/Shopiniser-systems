@@ -28,10 +28,8 @@ import com.salesmanager.core.model.merchant.MerchantStore;
 @Table(name = "LANGUAGE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 @Cacheable
 public class Language extends SalesManagerEntity<Integer, Language> implements Auditable {
-	private static final long serialVersionUID = -7676627812941330669L;
-	
+    private static final long serialVersionUID = -8971316145309887127L;
 
-	
 	@Id
 	@Column(name="LANGUAGE_ID")
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT",
@@ -54,7 +52,7 @@ public class Language extends SalesManagerEntity<Integer, Language> implements A
 	
 	@SuppressWarnings("unused")
 	@ManyToMany(mappedBy = "languages", targetEntity = MerchantStore.class)
-	private List<MerchantStore> stores = new ArrayList<MerchantStore>();
+	private List<MerchantStore> stores = new ArrayList<>();
 	
 	public Language() {
 	}

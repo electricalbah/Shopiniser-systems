@@ -7,7 +7,7 @@ public enum PaymentType {
 	CREDITCARD("creditcard"), FREE("creditcard"), COD("creditcard"), MONEYORDER("creditcard"), PAYPAL("creditcard"), STRIPE("creditcard"), WEPAY("creditcard");
 
 	
-	private String paymentType;
+	private final String paymentType;
 	
 	PaymentType(String type) {
 		paymentType = type;

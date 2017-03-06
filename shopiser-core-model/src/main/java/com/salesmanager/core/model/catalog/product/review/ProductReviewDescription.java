@@ -32,7 +32,7 @@ import com.salesmanager.core.model.reference.language.Language;
 	})
 })
 public class ProductReviewDescription extends Description {
-	private static final long serialVersionUID = -1957502640742695406L;
+    private static final long serialVersionUID = -252711034114638659L;
 
 	@ManyToOne(targetEntity = ProductReview.class)
 	@JoinColumn(name="PRODUCT_REVIEW_ID")

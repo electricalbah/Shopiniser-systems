@@ -4,11 +4,8 @@ import com.salesmanager.core.model.order.OrderTotalItem;
 import com.salesmanager.core.model.tax.taxrate.TaxRate;
 
 public class TaxItem extends OrderTotalItem {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3636772770212544645L;
+
 	private String label;
 	private TaxRate taxRate=null;
 

@@ -4,12 +4,8 @@ import java.io.Serializable;
 
 
 public class Address implements Serializable {
+    private static final long serialVersionUID = -6326729892079982892L;
 	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String city;
 	private String postalCode;
 	private String stateProvince;

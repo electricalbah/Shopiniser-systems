@@ -34,7 +34,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @EntityListeners(value = AuditListener.class)
 @Table(name = "PRODUCT_REVIEW", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ProductReview extends SalesManagerEntity<Long, ProductReview> implements Auditable {
-	private static final long serialVersionUID = -7509351278087554383L;
+    private static final long serialVersionUID = -3745385591339109300L;
 
 	@Id
 	@Column(name = "PRODUCT_REVIEW_ID", unique=true, nullable=false)
@@ -68,7 +68,7 @@ public class ProductReview extends SalesManagerEntity<Long, ProductReview> imple
 	private Product product;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productReview")
-	private Set<ProductReviewDescription> descriptions = new HashSet<ProductReviewDescription>();
+	private Set<ProductReviewDescription> descriptions = new HashSet<>();
 	
 	public ProductReview() {
 	}

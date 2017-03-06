@@ -15,23 +15,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.UniqueConstraint;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.catalog.product.Product;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
 import com.salesmanager.core.model.tax.taxrate.TaxRate;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TAX_CLASS", schema = SchemaConstant.SALESMANAGER_SCHEMA,uniqueConstraints=
     @UniqueConstraint(columnNames = {"MERCHANT_ID", "TAX_CLASS_CODE"}) )
 public class TaxClass extends SalesManagerEntity<Long, TaxClass> {
-	private static final long serialVersionUID = -325750148480212355L;
+    private static final long serialVersionUID = -188350523984731343L;
 	
 	public final static String DEFAULT_TAX_CLASS = "DEFAULT";
-	
 	public TaxClass(String code) {
 		this.code = code;
 		this.title = code;
@@ -43,18 +41,20 @@ public class TaxClass extends SalesManagerEntity<Long, TaxClass> {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "TABLE_GEN")
 	private Long id;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="TAX_CLASS_CODE", nullable=false, length=10)
 	private String code;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name = "TAX_CLASS_TITLE" , nullable=false , length=32 )
 	private String title;
 	
 
 
 	@OneToMany(mappedBy = "taxClass", targetEntity = Product.class)
-	private List<Product> products = new ArrayList<Product>();
+	private List<Product> products = new ArrayList<>();
 	
 
 /*	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
@@ -70,7 +70,7 @@ public class TaxClass extends SalesManagerEntity<Long, TaxClass> {
 
 	
 	@OneToMany(mappedBy = "taxClass")
-	private List<TaxRate> taxRates = new ArrayList<TaxRate>();
+	private List<TaxRate> taxRates = new ArrayList<>();
 	
 	public TaxClass() {
 		super();

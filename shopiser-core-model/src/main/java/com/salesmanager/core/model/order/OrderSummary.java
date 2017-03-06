@@ -15,15 +15,11 @@ import com.salesmanager.core.model.shoppingcart.ShoppingCartItem;
  *
  */
 public class OrderSummary implements Serializable {
-	
-	
-	/**
-	 * 
-	 */
+    private static final long serialVersionUID = -6960965802979555516L;
+
 	private OrderSummaryType orderSummaryType = OrderSummaryType.ORDERTOTAL;
-	private static final long serialVersionUID = 1L;
 	private ShippingSummary shippingSummary;
-	private List<ShoppingCartItem> products = new ArrayList<ShoppingCartItem>();
+	private List<ShoppingCartItem> products = new ArrayList<>();
 
 	public void setProducts(List<ShoppingCartItem> products) {
 		this.products = products;

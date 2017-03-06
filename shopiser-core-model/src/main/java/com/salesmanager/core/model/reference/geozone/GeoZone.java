@@ -21,7 +21,7 @@ import com.salesmanager.core.model.reference.country.Country;
 @Table(name = "GEOZONE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 // TODO : create DAO / Service
 public class GeoZone extends SalesManagerEntity<Long, GeoZone> {
-	private static final long serialVersionUID = -5992008645857938825L;
+    private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "GEOZONE_ID")
@@ -30,10 +30,10 @@ public class GeoZone extends SalesManagerEntity<Long, GeoZone> {
 	private Long id;
 	
 	@OneToMany(mappedBy = "geoZone", cascade = CascadeType.ALL)
-	private List<GeoZoneDescription> descriptions = new ArrayList<GeoZoneDescription>();
+	private List<GeoZoneDescription> descriptions = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "geoZone", targetEntity = Country.class)
-	private List<Country> countries = new ArrayList<Country>();
+	private List<Country> countries = new ArrayList<>();
 	
 
 	

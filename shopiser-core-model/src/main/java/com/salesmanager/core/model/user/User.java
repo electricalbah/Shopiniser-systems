@@ -21,11 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
@@ -33,14 +28,15 @@ import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
 import com.salesmanager.core.model.reference.language.Language;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
 @Table(name = "USER", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class User extends SalesManagerEntity<Long, User> implements Auditable {
-	
-	
-	private static final long serialVersionUID = 5401059537544058710L;
+    private static final long serialVersionUID = 8679950831233967439L;
 	
 	@Id
 	@Column(name = "USER_ID", unique=true, nullable=false)
@@ -59,7 +55,8 @@ public class User extends SalesManagerEntity<Long, User> implements Auditable {
 		this.adminEmail = email;
 	}
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="ADMIN_NAME", length=100, unique=true)
 	private String adminName;
 	
@@ -70,21 +67,26 @@ public class User extends SalesManagerEntity<Long, User> implements Auditable {
 			inverseJoinColumns = { @JoinColumn(name = "GROUP_ID", 
 					nullable = false, updatable = false) }
 	)
-	@Cascade({
-		org.hibernate.annotations.CascadeType.DETACH,
-		org.hibernate.annotations.CascadeType.LOCK,
-		org.hibernate.annotations.CascadeType.REFRESH,
-		org.hibernate.annotations.CascadeType.REPLICATE
-		
-	})
-	private List<Group> groups = new ArrayList<Group>();
+        
+        //todo
+//	@Cascade({
+//		org.hibernate.annotations.CascadeType.DETACH,
+//		org.hibernate.annotations.CascadeType.LOCK,
+//		org.hibernate.annotations.CascadeType.REFRESH,
+//		org.hibernate.annotations.CascadeType.REPLICATE
+//		
+//	})
+        @OneToMany(cascade={CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Group> groups = new ArrayList<>();
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Email
 	@Column(name="ADMIN_EMAIL")
 	private String adminEmail;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="ADMIN_PASSWORD", length=60)
 	private String adminPassword;
 	

@@ -30,8 +30,8 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 	}
 )
 public class ProductAttribute extends SalesManagerEntity<Long, ProductAttribute> {
-	private static final long serialVersionUID = -6537491946539803265L;
-	
+    private static final long serialVersionUID = 5898248585933988691L;
+
 	@Id
 	@Column(name = "PRODUCT_ATTRIBUTE_ID", unique=true, nullable=false)
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "PRODUCT_ATTR_SEQ_NEXT_VAL")
@@ -235,7 +235,4 @@ public class ProductAttribute extends SalesManagerEntity<Long, ProductAttribute>
 	public void setProductAttributePrice(BigDecimal productAttributePrice) {
 		this.productAttributePrice = productAttributePrice;
 	}
-
-
-
 }

@@ -31,7 +31,7 @@ import com.salesmanager.core.utils.CloneUtils;
 	}
 )
 public class FileHistory implements Serializable {
-	private static final long serialVersionUID = 1321251632883237664L;
+    private static final long serialVersionUID = -4344453118126425395L;
 	
 	@Id
 	@Column(name = "FILE_HISTORY_ID", unique = true, nullable = false)

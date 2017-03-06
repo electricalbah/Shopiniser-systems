@@ -25,12 +25,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 	}
 )
 public class CustomerOptionSet extends SalesManagerEntity<Long, CustomerOptionSet> {
-
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5565905412299680317L;
 
 	@Id
 	@Column(name = "CUSTOMER_OPTIONSET_ID", unique=true, nullable=false)

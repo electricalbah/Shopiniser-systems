@@ -18,23 +18,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
 import com.salesmanager.core.model.common.audit.Auditable;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
 @Table(name = "PERMISSION", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class Permission extends SalesManagerEntity<Integer, Permission> implements Auditable {
-
-	
-
-	private static final long serialVersionUID = 813468140197420748L;
+    private static final long serialVersionUID = -2337330417722888200L;
 
 	@Id
 	@Column(name = "PERMISSION_ID", unique=true, nullable=false)
@@ -51,7 +48,8 @@ public class Permission extends SalesManagerEntity<Integer, Permission> implemen
 	}
 	
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name="PERMISSION_NAME", unique=true)
 	private String permissionName;
 	
@@ -62,14 +60,17 @@ public class Permission extends SalesManagerEntity<Integer, Permission> implemen
 			inverseJoinColumns = { @JoinColumn(name = "GROUP_ID", 
 					nullable = false, updatable = false) }
 	)
-	@Cascade({
-		org.hibernate.annotations.CascadeType.DETACH,
-		org.hibernate.annotations.CascadeType.LOCK,
-		org.hibernate.annotations.CascadeType.REFRESH,
-		org.hibernate.annotations.CascadeType.REPLICATE
-		
-	})
-	private List<Group> groups = new ArrayList<Group>();
+        
+        //todo
+//	@Cascade({
+//		org.hibernate.annotations.CascadeType.DETACH,
+//		org.hibernate.annotations.CascadeType.LOCK,
+//		org.hibernate.annotations.CascadeType.REFRESH,
+//		org.hibernate.annotations.CascadeType.REPLICATE
+//		
+//	})
+        @OneToMany(cascade={CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Group> groups = new ArrayList<>();
 	
 	@Embedded
 	private AuditSection auditSection = new AuditSection();

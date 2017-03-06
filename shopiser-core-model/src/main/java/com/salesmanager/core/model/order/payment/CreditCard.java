@@ -6,9 +6,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.salesmanager.core.model.payments.CreditCardType;
+import java.io.Serializable;
 
 @Embeddable
-public class CreditCard {
+public class CreditCard implements Serializable {
+    private static final long serialVersionUID = 455144225542979431L;
 	
 	@Column (name ="CARD_TYPE")
 	@Enumerated(value = EnumType.STRING)

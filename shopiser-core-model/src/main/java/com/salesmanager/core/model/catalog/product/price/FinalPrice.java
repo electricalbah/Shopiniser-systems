@@ -12,11 +12,8 @@ import java.util.List;
  *
  */
 public class FinalPrice implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7451687918064931683L;
+
 	private BigDecimal discountedPrice = null;//final price if a discount is applied
 	private BigDecimal originalPrice = null;//original price
 	private BigDecimal finalPrice = null;//final price discount or not

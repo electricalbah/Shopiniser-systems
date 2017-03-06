@@ -24,11 +24,8 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @Entity
 @Table(name = "PRODUCT_DIGITAL", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints=
 	@UniqueConstraint(columnNames = {"PRODUCT_ID", "FILE_NAME"}))
-public class DigitalProduct extends SalesManagerEntity<Long, DigitalProduct> {
-
-
-	private static final long serialVersionUID = 1L;
-	
+public class DigitalProduct extends SalesManagerEntity<Long, DigitalProduct> {	
+    private static final long serialVersionUID = 3445587736757180950L;
 	
 	@Id
 	@Column(name = "PRODUCT_DIGITAL_ID")

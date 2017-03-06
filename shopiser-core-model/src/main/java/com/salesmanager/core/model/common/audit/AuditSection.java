@@ -13,9 +13,7 @@ import com.salesmanager.core.utils.CloneUtils;
 @Embeddable
 //@org.hibernate.annotations.Entity(dynamicUpdate = true, dynamicInsert = true)
 public class AuditSection implements Serializable {
-
-
-	private static final long serialVersionUID = -1934446958975060889L;
+    private static final long serialVersionUID = 9069513625783916883L;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE_CREATED")

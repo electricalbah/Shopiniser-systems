@@ -18,7 +18,7 @@ import com.salesmanager.core.model.reference.language.Language;
 	}
 )
 public class ZoneDescription extends Description {
-	private static final long serialVersionUID = 6448836326562270923L;
+    private static final long serialVersionUID = 1988705029753070124L;
 	
 	@ManyToOne(targetEntity = Zone.class)
 	@JoinColumn(name = "ZONE_ID", nullable = false)

@@ -12,11 +12,8 @@ import com.salesmanager.core.model.system.IntegrationModule;
  *
  */
 public class PaymentMethod implements Serializable {
+    private static final long serialVersionUID = -2051556196406169091L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String paymentMethodCode;
 	private PaymentType paymentType;
 	private boolean defaultSelected;

@@ -9,21 +9,17 @@ import javax.persistence.Transient;
 
 import com.salesmanager.core.model.reference.country.Country;
 import com.salesmanager.core.model.reference.zone.Zone;
+import java.io.Serializable;
 
 @Embeddable
-public class Delivery {
+public class Delivery implements Serializable {
+    private static final long serialVersionUID = 2648837799308893973L;
 	
 	@Column (name ="DELIVERY_LAST_NAME", length=64)
 	private String lastName;
 
-
-
-
 	@Column (name ="DELIVERY_FIRST_NAME", length=64)
 	private String firstName;
-
-	
-
 
 	@Column (name ="DELIVERY_COMPANY", length=100)
 	private String company;

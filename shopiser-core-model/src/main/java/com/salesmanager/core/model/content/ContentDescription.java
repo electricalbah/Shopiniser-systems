@@ -22,12 +22,7 @@ import com.salesmanager.core.model.reference.language.Language;
 	}
 )
 public class ContentDescription extends Description implements Serializable {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1252756716545768599L;
+    private static final long serialVersionUID = -4725073988284422089L;
 
 	@ManyToOne(targetEntity = Content.class)
 	@JoinColumn(name = "CONTENT_ID", nullable = false)

@@ -21,22 +21,19 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Pattern;
-
-
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.model.merchant.MerchantStore;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name="PRODUCT_OPTION", schema=SchemaConstant.SALESMANAGER_SCHEMA, indexes = { @Index(name="PRD_OPTION_CODE_IDX", columnList = "PRODUCT_OPTION_CODE")}, uniqueConstraints=
 	@UniqueConstraint(columnNames = {"MERCHANT_ID", "PRODUCT_OPTION_CODE"}))
 public class ProductOption extends SalesManagerEntity<Long, ProductOption> {
-	private static final long serialVersionUID = -2019269055342226086L;
-	
+    private static final long serialVersionUID = -4905093238185980632L;
+
 	@Id
 	@Column(name="PRODUCT_OPTION_ID")
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "PRODUCT_OPTION_SEQ_NEXT_VAL")
@@ -51,10 +48,10 @@ public class ProductOption extends SalesManagerEntity<Long, ProductOption> {
 	
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productOption")
-	private Set<ProductOptionDescription> descriptions = new HashSet<ProductOptionDescription>();
+	private Set<ProductOptionDescription> descriptions = new HashSet<>();
 	
 	@Transient
-	private List<ProductOptionDescription> descriptionsList = new ArrayList<ProductOptionDescription>();
+	private List<ProductOptionDescription> descriptionsList = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="MERCHANT_ID", nullable=false)
@@ -63,7 +60,8 @@ public class ProductOption extends SalesManagerEntity<Long, ProductOption> {
 	@Column(name="PRODUCT_OPTION_READ")
 	private boolean readOnly;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Pattern(regexp="^[a-zA-Z0-9_]*$")
 	@Column(name="PRODUCT_OPTION_CODE")
 	//@Index(name="PRD_OPTION_CODE_IDX")
@@ -126,8 +124,8 @@ public class ProductOption extends SalesManagerEntity<Long, ProductOption> {
 	
 
 	public List<ProductOptionDescription> getDescriptionsSettoList() {
-		if(descriptionsList==null || descriptionsList.size()==0) {
-			descriptionsList = new ArrayList<ProductOptionDescription>(this.getDescriptions());
+		if(descriptionsList==null || descriptionsList.isEmpty()) {
+			descriptionsList = new ArrayList<>(this.getDescriptions());
 		} 
 		return descriptionsList;
 

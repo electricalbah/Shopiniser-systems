@@ -25,9 +25,7 @@ import com.salesmanager.core.model.generic.SalesManagerEntity;
 @EntityListeners(value = AuditListener.class)
 @Table(name = "SHOPPING_CART_ATTR_ITEM", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ShoppingCartAttributeItem extends SalesManagerEntity<Long, ShoppingCartAttributeItem> implements Auditable {
-
-
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4518975236801362L;
 
 	@Id
 	@Column(name = "SHP_CART_ATTR_ITEM_ID", unique=true, nullable=false)

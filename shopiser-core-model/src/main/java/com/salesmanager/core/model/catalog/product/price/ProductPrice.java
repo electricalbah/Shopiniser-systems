@@ -22,18 +22,17 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.catalog.product.availability.ProductAvailability;
 import com.salesmanager.core.model.generic.SalesManagerEntity;
 import com.salesmanager.core.utils.CloneUtils;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "PRODUCT_PRICE", schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class ProductPrice extends SalesManagerEntity<Long, ProductPrice> {
-	private static final long serialVersionUID = -9186473817468772165L;
+    private static final long serialVersionUID = -7806506574485453826L;
 	
 	private final static String DEFAULT_PRICE_CODE="base";
 
@@ -44,9 +43,10 @@ public class ProductPrice extends SalesManagerEntity<Long, ProductPrice> {
 	private Long id;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productPrice", cascade = CascadeType.ALL)
-	private Set<ProductPriceDescription> descriptions = new HashSet<ProductPriceDescription>();
+	private Set<ProductPriceDescription> descriptions = new HashSet<>();
 
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Pattern(regexp="^[a-zA-Z0-9_]*$")
 	@Column(name = "PRODUCT_PRICE_CODE", nullable=false)
 	private String code = DEFAULT_PRICE_CODE;

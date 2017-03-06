@@ -11,63 +11,66 @@ import javax.persistence.UniqueConstraint;
 
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.Description;
+import javax.persistence.Temporal;
 
 @Entity
-@Table(name = "MANUFACTURER_DESCRIPTION", schema=SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints={
-	@UniqueConstraint(columnNames={
-			"MANUFACTURER_ID",
-			"LANGUAGE_ID"
-		})
-	}
+@Table(name = "MANUFACTURER_DESCRIPTION", schema = SchemaConstant.SALESMANAGER_SCHEMA, uniqueConstraints = {
+    @UniqueConstraint(columnNames = {
+        "MANUFACTURER_ID",
+        "LANGUAGE_ID"
+    })
+}
 )
 public class ManufacturerDescription extends Description {
-	private static final long serialVersionUID = -2164581613773995282L;
-	
-	@ManyToOne(targetEntity = Manufacturer.class)
-	@JoinColumn(name = "MANUFACTURER_ID", nullable = false)
-	private Manufacturer manufacturer;
-	
-	@Column(name = "MANUFACTURERS_URL")
-	private String url;
-	
-	@Column(name = "URL_CLICKED")
-	private Integer urlClicked;
-	
-	@Column(name = "DATE_LAST_CLICK")
-	private Date dateLastClick;
-	
-	public ManufacturerDescription() {
-	}
 
-	public String getUrl() {
-		return url;
-	}
+    private static final long serialVersionUID = 3947696385205741106L;
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    @ManyToOne(targetEntity = Manufacturer.class)
+    @JoinColumn(name = "MANUFACTURER_ID", nullable = false)
+    private Manufacturer manufacturer;
 
-	public Integer getUrlClicked() {
-		return urlClicked;
-	}
+    @Column(name = "MANUFACTURERS_URL")
+    private String url;
 
-	public void setUrlClicked(Integer urlClicked) {
-		this.urlClicked = urlClicked;
-	}
+    @Column(name = "URL_CLICKED")
+    private Integer urlClicked;
 
-	public Date getDateLastClick() {
-		return dateLastClick;
-	}
+    @Column(name = "DATE_LAST_CLICK")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateLastClick;
 
-	public void setDateLastClick(Date dateLastClick) {
-		this.dateLastClick = dateLastClick;
-	}
+    public ManufacturerDescription() {
+    }
 
-	public Manufacturer getManufacturer() {
-		return manufacturer;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setManufacturer(Manufacturer manufacturer) {
-		this.manufacturer = manufacturer;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Integer getUrlClicked() {
+        return urlClicked;
+    }
+
+    public void setUrlClicked(Integer urlClicked) {
+        this.urlClicked = urlClicked;
+    }
+
+    public Date getDateLastClick() {
+        return dateLastClick;
+    }
+
+    public void setDateLastClick(Date dateLastClick) {
+        this.dateLastClick = dateLastClick;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 }

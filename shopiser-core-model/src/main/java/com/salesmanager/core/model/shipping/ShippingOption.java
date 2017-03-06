@@ -8,13 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ShippingOption implements Serializable {
+    private static final long serialVersionUID = -2485892324524104783L;
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ShippingOption.class);
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ShippingOption.class);	
 	private BigDecimal optionPrice;
 
 	private String optionName = null;

@@ -3,12 +3,8 @@ package com.salesmanager.core.model.common;
 import java.io.Serializable;
 
 public class EntityList implements Serializable {
-	
+    private static final long serialVersionUID = 3586700668237499513L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6135941880202635567L;
 	private int totalCount;
 	
 	public int getTotalCount() {

@@ -36,9 +36,6 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.salesmanager.core.constants.SchemaConstant;
 import com.salesmanager.core.model.common.audit.AuditListener;
 import com.salesmanager.core.model.common.audit.AuditSection;
@@ -48,6 +45,8 @@ import com.salesmanager.core.model.merchant.MerchantStore;
 import com.salesmanager.core.model.reference.country.Country;
 import com.salesmanager.core.model.reference.zone.Zone;
 import com.salesmanager.core.model.tax.taxclass.TaxClass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @EntityListeners(value = AuditListener.class)
@@ -59,7 +58,7 @@ import com.salesmanager.core.model.tax.taxclass.TaxClass;
 		}
 	)
 public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Auditable {
-	private static final long serialVersionUID = 3356827741612925066L;
+    private static final long serialVersionUID = -7396315318970943207L;
 	
 	@Id
 	@Column(name = "TAX_RATE_ID")
@@ -76,7 +75,8 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	@Column(name = "TAX_RATE" , nullable= false , precision=7, scale=4)
 	private BigDecimal taxRate;
 	
-	@NotEmpty
+	@NotNull 
+        @Size(min=1)
 	@Column(name = "TAX_CODE")
 	private String code;
 	
@@ -96,7 +96,7 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	
 	@Valid
 	@OneToMany(mappedBy = "taxRate", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<TaxRateDescription> descriptions = new ArrayList<TaxRateDescription>();
+	private List<TaxRateDescription> descriptions = new ArrayList<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Country.class)
 	@JoinColumn(name="COUNTRY_ID", nullable=false, updatable=true)
@@ -114,7 +114,7 @@ public class TaxRate  extends SalesManagerEntity<Long, TaxRate> implements Audit
 	private TaxRate parent;
 	
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<TaxRate> taxRates = new ArrayList<TaxRate>();
+	private List<TaxRate> taxRates = new ArrayList<>();
 	
 	@Transient
 	private String rateText;

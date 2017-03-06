@@ -23,7 +23,7 @@ import com.salesmanager.core.model.order.Order;
 @Entity
 @Table (name="ORDER_PRODUCT" , schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class OrderProduct extends SalesManagerEntity<Long, OrderProduct> {
-	private static final long serialVersionUID = 176131742783954627L;
+    private static final long serialVersionUID = 6395313733085881062L;
 	
 	@Id
 	@Column (name="ORDER_PRODUCT_ID")
@@ -49,13 +49,13 @@ public class OrderProduct extends SalesManagerEntity<Long, OrderProduct> {
 	private Order order;
 
 	@OneToMany(mappedBy = "orderProduct", cascade = CascadeType.ALL)
-	private Set<OrderProductAttribute> orderAttributes = new HashSet<OrderProductAttribute>();
+	private Set<OrderProductAttribute> orderAttributes = new HashSet<>();
 
 	@OneToMany(mappedBy = "orderProduct", cascade = CascadeType.ALL)
-	private Set<OrderProductPrice> prices = new HashSet<OrderProductPrice>();
+	private Set<OrderProductPrice> prices = new HashSet<>();
 
 	@OneToMany(mappedBy = "orderProduct", cascade = CascadeType.ALL)
-	private Set<OrderProductDownload> downloads = new HashSet<OrderProductDownload>();
+	private Set<OrderProductDownload> downloads = new HashSet<>();
 	
 	public OrderProduct() {
 	}

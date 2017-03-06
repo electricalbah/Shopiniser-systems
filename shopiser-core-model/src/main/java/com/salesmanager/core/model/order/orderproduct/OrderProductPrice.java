@@ -21,8 +21,8 @@ import com.salesmanager.core.constants.SchemaConstant;
 @Entity
 @Table (name="ORDER_PRODUCT_PRICE" , schema=SchemaConstant.SALESMANAGER_SCHEMA)
 public class OrderProductPrice implements Serializable {
-	private static final long serialVersionUID = 3734737890163564311L;
-
+    private static final long serialVersionUID = 2756880601221670279L;
+    
 	@Id
 	@Column (name="ORDER_PRODUCT_PRICE_ID")
 	@TableGenerator(name = "TABLE_GEN", table = "SM_SEQUENCER", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT",

@@ -76,7 +76,4 @@ public class ProductCriteria extends Criteria {
 	public Long getManufacturerId() {
 		return manufacturerId;
 	}
-
-
-
 }
